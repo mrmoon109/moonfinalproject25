@@ -9,7 +9,9 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play The Valley.</tw-noscript></noscript></tw-story>
-<tw-storydata name="The Valley" startnode="160" creator="Twine" creator-version="2.10.0" format="Harlowe" format-version="3.3.9" ifid="57B45D55-DF4A-44EA-B7FD-4B4DF63073C2" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="Mechanics" color="yellow"></tw-tag><tw-tag name="Chores" color="green"></tw-tag><tw-tag name="Act-3" color="blue"></tw-tag><tw-passagedata pid="1" name="1st period" tags="" position="1675,3075" size="100,100">They&#39;re names, you realize.
+<tw-storydata name="The Valley" startnode="160" creator="Twine" creator-version="2.10.0" format="Harlowe" format-version="3.3.9" ifid="57B45D55-DF4A-44EA-B7FD-4B4DF63073C2" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-sidebar {
+    display: none;
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-tag name="Mechanics" color="yellow"></tw-tag><tw-tag name="Chores" color="green"></tw-tag><tw-tag name="Act-3" color="blue"></tw-tag><tw-passagedata pid="1" name="1st period" tags="" position="1675,3075" size="100,100">They&#39;re names, you realize.
 
 =|=
 Nikola
@@ -327,9 +329,12 @@ The grass is shorter here, evidence of the goats that must be nearby.
 [[Head south-&gt;B10]]
 [[Head west-&gt;A9]]</tw-passagedata><tw-passagedata pid="28" name="Backpack" tags="Mechanics" position="1900,500" size="100,100">(set: $hasBackpack to true)
 You put your backpack on.
-(after:2s)[(go-to:&quot;Living Room&quot;)]</tw-passagedata><tw-passagedata pid="29" name="Bathroom" tags="" position="1700,1775" size="100,100">A small tub sits in the corner alongside the toilet. A small pedestal sink completes the bathroom.  (if:$clockPuzzle is false)[The water is drawn from the river, piped in through clever engineering you don&#39;t really understand, but you know enough to keep it in working order.](if:$clockPuzzle is true)[You&#39;re about to flush, but you pause, realizing you can&#39;t hear the river, the source of the bathroom&#39;s water.]
+[[Go back-&gt;Living Room]] </tw-passagedata><tw-passagedata pid="29" name="Bathroom" tags="" position="1700,1775" size="100,100">A small tub sits in the corner alongside the toilet. A small pedestal sink completes the bathroom.  (if:$clockPuzzle is false)[The water is drawn from the river, piped in through clever engineering you don&#39;t really understand, but you know enough to keep it in working order.](if:$clockPuzzle is true)[You&#39;re about to flush, but you pause, realizing you can&#39;t hear the river, the source of the bathroom&#39;s water.]
 
-[[North to the kitchen-&gt;Kitchen]]</tw-passagedata><tw-passagedata pid="30" name="Bedroom" tags="" position="1800,1775" size="100,100">The furniture is well made, the bed plush and comfortable, and the window facing east lets sunlight in each morning. A dark framed mirror hangs on the west wall.
+On the wall hangs a crudely drawn map of the Valley.
+
+[[North to the kitchen-&gt;Kitchen]]
+[[Look at the map]]</tw-passagedata><tw-passagedata pid="30" name="Bedroom" tags="" position="1800,1775" size="100,100">The furniture is well made, the bed plush and comfortable, and the window facing east lets sunlight in each morning. A dark framed mirror hangs on the west wall.
 
 There&#39;s not much here, but it&#39;s your home and your sanctuary.
 
@@ -399,9 +404,34 @@ Nothing happens.
 
 In the meantime, you use some dill, yogurt you prepared last week, and add it to the fresh cucumbers for a salad.
 
-[[And you enjoy your meal...]]</tw-passagedata><tw-passagedata pid="43" name="Chores incomplete" tags="" position="1825,1925" size="100,100">You glance through the list of chores in the meadow, the livestock, the fishing, and the garden, checking off those you&#39;ve completed.
+[[And you enjoy your meal...]]</tw-passagedata><tw-passagedata pid="43" name="Chores incomplete" tags="" position="1825,1925" size="100,100">(if: ($b10PoopClean is true) and ($j4PoopClean is true)) [
+~~Clean up after the mountain goats x2 ~~\
+] (else:) [
+Clean up after the mountain goats x2 \
+]
+(if: $hasEggs is true) [
+~~Collect eggs~~\
+] (else:) [
+Collect eggs\
+]
+(if: $milkedCow is true) [
+~~Milk the cow~~\
+] (else:) [
+Milk the cow\
+]
+(if: $hasFish is true) [
+~~Catch a fish for dinner~~
+] (else:) [
+Catch a fish for dinner\
+]
+(if: ($hasCucumber) and ($hasSquash)) [
+~~Pick ripe produce~~\
+] (else:) [
+Pick ripe produce\
+]
 
-(after:5s)[(go-to:&quot;Kitchen&quot;)]</tw-passagedata><tw-passagedata pid="44" name="Clean the goat droppings - J4" tags="Chores" position="2600,975" size="100,100">(if: $hasShovel is true) [
+[[Back to the kitchen-&gt;Kitchen]]
+</tw-passagedata><tw-passagedata pid="44" name="Clean the goat droppings - J4" tags="Chores" position="2600,975" size="100,100">(if: $hasShovel is true) [
 
  (set: $j4PoopClean to true)
  (print: &quot;You shovel the goat droppings together in a pile to cart away later to use in compost.&quot;)]
@@ -411,8 +441,7 @@ In the meantime, you use some dill, yogurt you prepared last week, and add it to
  (print: &quot;Unless you want to pick up the poop by hand, you should get some sort of tool to help you.&quot;)
  ]
 
-(after:5s)[
-(go-to:&quot;J4&quot;)]
+[[Go back-&gt;J4]]
 </tw-passagedata><tw-passagedata pid="45" name="Climb the ladder" tags="" position="1550,2700" size="100,100">You climb the ladder, metal warm under each grasping hand. You push open the hatch. 
 
 (after:4s)[An orange hazy light from a smoke obscured sun and an acrid, oily stench envelopes you...]
@@ -446,7 +475,7 @@ You really don&#39;t want to touch the spiny cucumbers with your bare hands, so 
 (if: $hasBackpack is false)[
 You don&#39;t have anything to hold the cucumbers, so you leave them on the vines.]
 
-(after:2s)[(go-to:&quot;D10&quot;)]</tw-passagedata><tw-passagedata pid="48" name="D1" tags="" position="1200,875" size="100,100">Your calves ache a bit from the strenuous walk through the rolling and rocky foothills. You  note with passing curiosity how the large boulders here seem almost artfully placed in a design not found in nature or chance, but your focus returns to placing your next step carefully. It&#39;d be too easy to turn your ankle, and you know that from experience.
+[[Go back-&gt;D10]]</tw-passagedata><tw-passagedata pid="48" name="D1" tags="" position="1200,875" size="100,100">Your calves ache a bit from the strenuous walk through the rolling and rocky foothills. You  note with passing curiosity how the large boulders here seem almost artfully placed in a design not found in nature or chance, but your focus returns to placing your next step carefully. It&#39;d be too easy to turn your ankle, and you know that from experience.
 
 [[Head east-&gt;E1]]
 [[Head south-&gt;D2]]
@@ -653,9 +682,9 @@ You don&#39;t want to carry the fertilizer around in your hands, so you leave it
 (set: $hasFertilizer to false)
 You put the fertilizer back.
 ]
-(after:2s)[(go-to:&quot;A9&quot;)]</tw-passagedata><tw-passagedata pid="88" name="Fishing pole" tags="Mechanics" position="1800,475" size="100,100">(set: $hasFishingPole to true)
+[[Go back-&gt;A9]]</tw-passagedata><tw-passagedata pid="88" name="Fishing pole" tags="Mechanics" position="1800,475" size="100,100">(set: $hasFishingPole to true)
 You heft the light-weight fishing pole on your shoulder.
-(after:2s)[(go-to:&quot;A2&quot;)]</tw-passagedata><tw-passagedata pid="89" name="Front porch" tags="" position="1700,1575" size="100,100">You stand on the front porch of your rustic cottage, feet planted firmly on cleanly hewn logs. Your home is in the southeast corner of the Valley (you find that even in your own head you capitalize the word).
+[[Go back-&gt;A2]]</tw-passagedata><tw-passagedata pid="89" name="Front porch" tags="" position="1700,1575" size="100,100">You stand on the front porch of your rustic cottage, feet planted firmly on cleanly hewn logs. Your home is in the southeast corner of the Valley (you find that even in your own head you capitalize the word).
 
 (if:$clockPuzzle is false)[From here, you can see the river running north-south bisecting the valley to your west, and of course, the omnipresent mountains surrounding all four sides.](if:$clockPuzzle is true)[The omnipresent mountains surround you on all sides, but you can&#39;t help but notice the silence that the roar of the river once filled.]
 
@@ -711,7 +740,7 @@ While not a dramatic waterfall by any means, it does mean that this corner of ri
  (set: $hasEggs to false)
  (print: &quot;You have nothing to put the eggs in, so you leave them there for now.&quot;)]
 
-(after:2s)[(go-to:&quot;A7&quot;)]</tw-passagedata><tw-passagedata pid="99" name="Gloves" tags="Mechanics" position="1925,275" size="100,100">(if: $hasGloves is false)[
+[[Go back-&gt;A7]]</tw-passagedata><tw-passagedata pid="99" name="Gloves" tags="Mechanics" position="1925,275" size="100,100">(if: $hasGloves is false)[
 (if: $hasBackpack is true)[
 (set: $hasGloves to true)
 You put the gloves and shears in your backpack.]
@@ -724,7 +753,7 @@ You don&#39;t want to carry the gloves and shears around in your hands, so you l
 (set: $hasGloves to false)
 You put the gloves and shears back.
 ]
-(after:2s)[(go-to:&quot;A9&quot;)]</tw-passagedata><tw-passagedata pid="100" name="Go fishing" tags="Chores" position="2325,900" size="100,100">(set: $fishEvent to (random: 1, 6))
+[[Go back-&gt;A9]]</tw-passagedata><tw-passagedata pid="100" name="Go fishing" tags="Chores" position="2325,900" size="100,100">(set: $fishEvent to (random: 1, 6))
 
 (if: ($fishEvent is 5) or ($fishEvent is 6)) [
 (set: $hasFish to true)
@@ -797,7 +826,7 @@ You don&#39;t want to carry the hammer and nails around in your hands, so you le
 (set: $hasHammer to false)
 You put the hammer and nails back.
 ]
-(after:2s)[(go-to:&quot;A9&quot;)]</tw-passagedata><tw-passagedata pid="110" name="Hobbit" tags="Mechanics" position="1750,100" size="100,100">(if: $choresComplete is true) [
+[[Go back-&gt;A9]]</tw-passagedata><tw-passagedata pid="110" name="Hobbit" tags="Mechanics" position="1750,100" size="100,100">(if: $choresComplete is true) [
 (set: $randomPage to 4)]
 (else:) [
 (set:$randomPage to (random: 1, 3))
@@ -970,7 +999,9 @@ Dried herbs hanging from the ceiling fill the air with the scent of rosemary and
 (if: ($choresComplete is false) and ($b10PoopClean is true) and ($j4PoopClean is true) and ($hasEggs is true) and ($milkedCow is true) and ($hasCucumber is true) and ($hasSquash is true) and ($hasFish is true)) [
 [[Check all the chores off your to-do list-&gt;Chores complete]]]\
 (else-if: ($choresComplete is false) and ($b10PoopClean is true) or ($j4PoopClean is true) or ($hasEggs is true) or ($milkedCow is true) or ($hasCucumber is true) or ($hasSquash is true) or ($hasFish is true)) [
-[[Check some of the chores off your to-do list-&gt;Chores incomplete]]]</tw-passagedata><tw-passagedata pid="127" name="Living Room" tags="" position="1800,1675" size="100,100">Like the rest of your cottage, the living room is simple. An overstuffed armchair, well-molded to your body sits on the east wall, a large picture window above it, which allows the morning light to shine through.
+[[Check some of the chores off your to-do list-&gt;Chores incomplete]]]
+(else:)[
+[[Check the list of chores-&gt;Check chore list]]]</tw-passagedata><tw-passagedata pid="127" name="Living Room" tags="" position="1800,1675" size="100,100">Like the rest of your cottage, the living room is simple. An overstuffed armchair, well-molded to your body sits on the east wall, a large picture window above it, which allows the morning light to shine through.
 
 A heavy wooden coffee table sits in the middle of the room, a few books piled on top, and a simple dark blue rug covers the rough hewn plank floor.\
 &lt;br&gt;(if:$hasBackpack is false)[Your backpack sits leaning against the couch.]
@@ -1056,7 +1087,7 @@ You glance back at the missing eyes and then the outline of the door.
  (set: $milkedCow to false)
  (print: &quot;You look around but realize that you don&#39;t have anything to put the milk in.&quot;)]
 
-(after:2s)[(go-to:&quot;A5&quot;)]</tw-passagedata><tw-passagedata pid="144" name="Move the clock hands" tags="Mechanics" position="2100,400" size="100,100">Struck by whimsy, you decide to move the clock hands.
+[[Go back-&gt;A5]]</tw-passagedata><tw-passagedata pid="144" name="Move the clock hands" tags="Mechanics" position="2100,400" size="100,100">Struck by whimsy, you decide to move the clock hands.
 
 What time do you want to set on the clock sculpture?
 
@@ -1088,7 +1119,7 @@ You don&#39;t want to carry the pail around in your hands, so you leave it here.
 (set: $hasPail to false)
 You put the pail back.
 ]
-(after:2s)[(go-to:&quot;A9&quot;)]</tw-passagedata><tw-passagedata pid="147" name="Put the eyes in!" tags="" position="575,3225" size="100,100">You carry the bowl of gemstones over to the dove sculpture.
+[[Go back-&gt;A9]]</tw-passagedata><tw-passagedata pid="147" name="Put the eyes in!" tags="" position="575,3225" size="100,100">You carry the bowl of gemstones over to the dove sculpture.
 
 In the left eye, you put in...
 
@@ -1180,7 +1211,7 @@ Jin Sil, your &quot;dad&quot;
   (set:$clockTime to &quot;1:35&quot;)
 ]
 
-(after:2s)[(go-to:&quot;Clock&quot;)]</tw-passagedata><tw-passagedata pid="156" name="Shovel" tags="Mechanics" position="2050,150" size="100,100">(if: $hasShovel is false)[
+[[Go back-&gt;Clock]]</tw-passagedata><tw-passagedata pid="156" name="Shovel" tags="Mechanics" position="2050,150" size="100,100">(if: $hasShovel is false)[
 (set: $hasShovel to true)
 You take the shovel.
 ]
@@ -1188,7 +1219,7 @@ You take the shovel.
 (set: $hasShovel to false)
 You put the shovel back.
 ]
-(after:2s)[(go-to:&quot;A9&quot;)]</tw-passagedata><tw-passagedata pid="157" name="Squash" tags="Chores" position="2450,575" size="100,100">(if: $hasGloves is true)[
+[[Go back-&gt;A9]]</tw-passagedata><tw-passagedata pid="157" name="Squash" tags="Chores" position="2450,575" size="100,100">(if: $hasGloves is true)[
 (if: $hasBackpack is true)[
 (set: $hasSquash to true)
 You harvest some squash as you snip just above the fruit with your shears, and place them carefully in your backpack.]]
@@ -1197,7 +1228,7 @@ You could pull the squash off, but the vines are tough and you don&#39;t want to
 (if: $hasBackpack is false)[
 You don&#39;t have anything to hold the squash, so you leave them on the vines.]
 
-(after:2s)[(go-to:&quot;D10&quot;)]</tw-passagedata><tw-passagedata pid="158" name="Step in" tags="" position="475,3350" size="100,100">You step through the portal, and you find yourself in the northeast corner of the Valley, near the terminus of the river, which trickles by merrily. A pair of thrushes dart through the air a few feet above you, and you look up in wonderment. 
+[[Go back-&gt;D10]]</tw-passagedata><tw-passagedata pid="158" name="Step in" tags="" position="475,3350" size="100,100">You step through the portal, and you find yourself in the northeast corner of the Valley, near the terminus of the river, which trickles by merrily. A pair of thrushes dart through the air a few feet above you, and you look up in wonderment. 
 
 Then, remembering the door, you spin around but find nothing but the impregnable walls of the mountains. Running your fingers over the cold, lifeless stone reveals neither crease nor crevice.
 
@@ -1293,31 +1324,22 @@ You are suddenly a giant, stepping over the mountains as if they were anthills..
 (if: $hasShovel is false) [
  (print: &quot;Unless you want to pick up the poop by hand, you should get some sort of tool to help you.&quot;)]
 
-(after:5s)[
-(go-to:&quot;B10&quot;)]
-</tw-passagedata><tw-passagedata pid="168" name="Check chores" tags="" position="2175,1625" size="100,100">(if: $choresComplete is true) [
-All the chores are crossed off.
-(after:2s)[(go-to:&quot;Kitchen&quot;)]
-]
+[[Go back-&gt;B10]]
+</tw-passagedata><tw-passagedata pid="168" name="Check chore list" tags="" position="1575,1925" size="100,100">You glance through the list:
 
-(if: ($choresComplete is false) and ($b10PoopClean is true) and ($j4PoopClean is true) and ($hasEggs is true) and ($milkedCow is true) and ($hasCucumber is true) and ($hasSquash is true) and ($hasFish is true)) [
-[[Check all the chores off your to-do list-&gt;Chores complete]]
-]
-
-(else:) [
-(if: ($b10PoopClean is false) or ($j4PoopClean is false)) [
-Clean goat droppings around the valley]\
-(if: $hasEggs is false) [
-Collect eggs from the coop]\
-(if: $milkedCow is false) [
-Milk the cow]\
-(if: ($hasCucumber is false) or ($hasSquash is false)) [
-Harvest the ripe crops]\
-(if: $hasFish is false) [
-Catch some fish for dinner]\
+* Clean up after the mountain goats x2 
+* Collect eggs
+* Milk the cow
+* Catch a fish for dinner
+* Pick ripe produce
 
 [[Back to the kitchen-&gt;Kitchen]]
-]</tw-passagedata></tw-storydata>
+</tw-passagedata><tw-passagedata pid="169" name="Look at the map" tags="" position="2250,1675" size="100,100">//Author&#39;s note: This map could be considered as an &quot;easy mode&quot; of sorts. It&#39;s also ugly.//
+
+[[Never mind - take me back to the bathroom-&gt;Bathroom]]
+[[Let me see the map!]]</tw-passagedata><tw-passagedata pid="170" name="Let me see the map!" tags="" position="2250,1800" size="100,100">&lt;img src=&quot;http://teachstuffgood.com/Valley Map.png&quot;&gt;
+
+[[Back to the bathroom-&gt;Bathroom]]</tw-passagedata></tw-storydata>
 <script title="Twine engine code" data-main="harlowe">(function(){"use strict";
 var require,define;!function(){var e={},r={};require=function(i){var n=e[i];return n&&(r[i]=n[1].apply(void 0,n[0].map(require)),e[i]=void 0),r[i]},(define=function(r,i,n){if("function"==typeof r)return r();e[r]=[i,n]}).amd=!0}();/*!
  * https://github.com/paulmillr/es6-shim
